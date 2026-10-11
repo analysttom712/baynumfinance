@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Baynum Financial &amp; Analytics, LLC | Bookkeeping &amp; Power BI · South Carolina</title>
-  <meta name="description" content="Bookkeeping, financial reporting, and Power BI dashboards for small businesses in South Carolina.">
+  <meta name="description" content="Bookkeeping, financial reporting, and Power BI dashboards for small to medium businesses in South Carolina.">
   <link rel="canonical" href="https://baynumfinancial.com/">
 
   <!-- Link previews (Facebook, LinkedIn, texts) -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Baynum Financial &amp; Analytics, LLC">
   <meta property="og:title" content="Baynum Financial &amp; Analytics, LLC">
-  <meta property="og:description" content="Guarding your books. Growing your business. Bookkeeping, financial reporting, and Power BI dashboards for small businesses in South Carolina.">
+  <meta property="og:description" content="Guarding your books. Growing your business. Bookkeeping, financial reporting, and Power BI dashboards for small to medium businesses in South Carolina.">
   <meta property="og:url" content="https://baynumfinancial.com/">
   <meta property="og:image" content="https://baynumfinancial.com/assets/og-image.jpg">
   <meta property="og:image:width" content="1200">
@@ -136,21 +136,58 @@
     }
     .btn.primary { background: var(--blue); border-color: var(--blue); }
     .btn.primary:hover { background: #2B7FF0; }
-    /* About section */
-    .about {
-      margin-top: 32px;
-      padding-top: 28px;
-      border-top: 1px solid rgba(142,197,255,0.25);
-      text-align: left;
-    }
-    .about h2 {
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+    /* Expandable panels (Contact, About Me, QuickBooks) */
+    .panel { text-align: left; }
+    .panel > summary {
+      list-style: none;
+      cursor: pointer;
       text-align: center;
-      margin-bottom: 18px;
+      position: relative;
     }
+    .panel > summary::-webkit-details-marker { display: none; }
+    .panel > summary::after {
+      content: "▾";
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--ice);
+      transition: transform 0.15s;
+    }
+    .panel[open] > summary {
+      background: var(--blue);
+      border-color: var(--blue);
+      border-radius: 10px 10px 0 0;
+    }
+    .panel[open] > summary::after { transform: translateY(-50%) rotate(180deg); color: var(--white); }
+    .panel-body {
+      background: rgba(11,11,15,0.55);
+      border: 1px solid var(--blue);
+      border-top: none;
+      border-radius: 0 0 10px 10px;
+      padding: 18px 16px;
+    }
+    .sub-links { display: flex; flex-direction: column; gap: 8px; }
+    .sub-links a {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 11px 14px;
+      border-radius: 8px;
+      color: var(--white);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid rgba(142,197,255,0.2);
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .sub-links a span { color: var(--ice); font-weight: 400; }
+    .sub-links a:hover, .sub-links a:focus-visible {
+      background: rgba(30,111,217,0.25);
+      border-color: var(--blue);
+      outline: none;
+    }
+    /* About Me */
     .about h3 {
       color: var(--ice);
       font-size: 13px;
@@ -159,61 +196,66 @@
       text-transform: uppercase;
       margin: 20px 0 6px;
     }
+    .about h3:first-child { margin-top: 0; }
     .about p, .about li {
       font-size: 14px;
       line-height: 1.65;
       opacity: 0.92;
     }
-    .about ul { padding-left: 20px; margin-bottom: 12px; }
+    .about p + p { margin-top: 10px; }
+    .about ul { padding-left: 20px; margin-bottom: 10px; }
     .about li { margin-bottom: 4px; }
-    .about .note {
+    .note {
       margin-top: 10px;
       font-size: 13px;
+      line-height: 1.5;
       padding: 10px 12px;
       border-left: 3px solid var(--blue);
       background: rgba(11,11,15,0.45);
       border-radius: 0 8px 8px 0;
     }
+    /* Get Started with QuickBooks */
+    .qb-note {
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+    .qb-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px;
+      border-radius: 10px;
+      background: var(--white);
+      color: #0B0B0F;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      line-height: 1.35;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .qb-link img { width: 44px; height: 44px; object-fit: contain; flex-shrink: 0; }
+    .qb-link:hover, .qb-link:focus-visible {
+      transform: translateY(-1px);
+      box-shadow: 0 0 0 3px var(--blue);
+      outline: none;
+    }
+    .qb-link small { display: block; font-weight: 400; font-size: 12px; color: #444; margin-top: 2px; }
+    .signed-up {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(142,197,255,0.25);
+      font-size: 14px;
+      text-align: center;
+    }
+    .signed-up a { color: var(--ice); font-weight: 600; }
     footer {
       margin-top: 28px;
       font-size: 11px;
       opacity: 0.7;
       line-height: 1.6;
       padding-bottom: 40px;
-    }
-    /* Client Resources link, pinned to the bottom-left of the page */
-    .corner-link {
-      position: fixed;
-      left: 20px;
-      bottom: 20px;
-      z-index: 10;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 14px;
-      border-radius: 10px;
-      background: var(--navy);
-      border: 1px solid rgba(142,197,255,0.35);
-      color: var(--ice);
-      font-size: 13px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background 0.15s, color 0.15s, border-color 0.15s;
-    }
-    .corner-link:hover, .corner-link:focus-visible {
-      background: var(--blue);
-      border-color: var(--blue);
-      color: var(--white);
-      outline: none;
-    }
-    /* On phones, drop it below the card so it never covers the buttons */
-    @media (max-width: 560px) {
-      body { flex-direction: column; }
-      .corner-link {
-        position: static;
-        align-self: flex-start;
-        margin-top: 16px;
-      }
     }
   </style>
 </head>
@@ -223,50 +265,64 @@
       <img class="logo" src="assets/logo-600.jpg" width="600" height="600"
            alt="Baynum Financial &amp; Analytics logo: a blue dragon guarding a treasure chest. Guarding your books. Growing your business.">
       <h1>Baynum Financial<br>&amp; Analytics, LLC</h1>
-      <p class="tagline">Bookkeeping · Financial Reporting · Power BI Dashboards</p>
+      <p class="tagline">Bookkeeping · Reconciliations · Monthly Reporting</p>
       <p class="owner">Tom Baynum, Owner</p>
 
       <nav class="links">
-        <!-- EDIT: change the email address if yours is different -->
         <a class="btn primary" href="mailto:tom@baynumfinancial.com?subject=Consultation%20request">Request a Consultation</a>
 
-        <a class="btn" href="https://www.linkedin.com/company/baynumfinancial" target="_blank" rel="noopener">LinkedIn: Baynum Financial &amp; Analytics</a>
+        <details class="panel" name="panel" id="contact">
+          <summary class="btn">Contact</summary>
+          <div class="panel-body">
+            <div class="sub-links">
+              <a href="mailto:tom@baynumfinancial.com">Email <span>tom@baynumfinancial.com</span></a>
+              <a href="tel:+18037666175">Call <span>(803) 766-6175</span></a>
+              <a href="https://www.linkedin.com/in/thomas-baynumacct" target="_blank" rel="noopener">LinkedIn <span>Personal</span></a>
+              <a href="https://www.linkedin.com/company/baynumfinancial" target="_blank" rel="noopener">LinkedIn <span>Business</span></a>
+              <a href="https://github.com/analysttom712" target="_blank" rel="noopener">GitHub <span>analysttom712</span></a>
+            </div>
+          </div>
+        </details>
 
-        <a class="btn" href="https://www.linkedin.com/in/thomas-baynumacct" target="_blank" rel="noopener">LinkedIn: Tom Baynum</a>
+        <details class="panel" name="panel" id="about">
+          <summary class="btn">About Me</summary>
+          <div class="panel-body about">
+            <p>I'm Tom Baynum, owner of Baynum Financial &amp; Analytics, LLC. By day, I'm a benefits coordinator at a financial institution. I manage premium accounts for about 1,500 former employees and reconcile benefits against payroll for more than 5,000 people. That's a lot of numbers that all have to tie out, and getting them there is my kind of puzzle. I built the Power BI reporting I use to keep it all in balance.</p>
+            <p>Before that, I worked in state government accounting as a fiscal analyst, and I'm a certified Intuit QuickBooks ProAdvisor.</p>
 
-        <a class="btn" href="mailto:tom@baynumfinancial.com">Email</a>
+            <h3>Why I do this</h3>
+            <p>My passion is data-driven solutions: taking numbers that feel overwhelming and turning them into something easy to understand. Finances can sound tricky. My goal is for you to feel confident in your books, so when tax time comes, you and your tax preparer have clean, reconciled numbers to work from.</p>
 
-        <a class="btn" href="tel:+18037666175">Call (803) 766-6175</a>
+            <h3>What I offer</h3>
+            <ul>
+              <li>Recording and categorizing transactions</li>
+              <li>Monthly bank and credit card reconciliations</li>
+              <li>Simple monthly reports that are easy to understand</li>
+            </ul>
+            <p><strong>Premium:</strong> custom visual dashboards, built around each client's business.</p>
+            <p>I won't oversell myself as the biggest name in town. What I bring is the training, the certification, and hands-on reconciliation experience, applied carefully to your books.</p>
 
-        <a class="btn" href="https://github.com/analysttom712" target="_blank" rel="noopener">GitHub</a>
+            <h3>Who I work with</h3>
+            <p>Small to medium businesses.</p>
+            <p class="note">At this time, I'm not able to take on clients in the agriculture industry.</p>
+
+            <h3>How I work</h3>
+            <p>New projects always excite me, but what matters most is building a lasting relationship: a client who knows they can trust me and my services, and who understands their numbers better because we worked through them together.</p>
+          </div>
+        </details>
+
+        <details class="panel" name="panel" id="quickbooks">
+          <summary class="btn">Get Started with QuickBooks</summary>
+          <div class="panel-body">
+            <p class="qb-note">Review the plans and choose the option that's best for your business.</p>
+            <a class="qb-link" href="https://quickbooks.intuit.com/oa/get-quickbooks/" target="_blank" rel="noopener">
+              <img src="assets/quickbooks-logo.png" alt="" onerror="this.remove()">
+              <span>Intuit QuickBooks for Small to Medium Business<small>Opens Intuit's site in a new tab</small></span>
+            </a>
+            <p class="signed-up">Already signed up?<br><a href="resources.html">Go to Client Resources →</a></p>
+          </div>
+        </details>
       </nav>
-
-      <section class="about" id="about" aria-labelledby="about-title">
-        <h2 id="about-title">About</h2>
-
-        <p>I'm Tom Baynum, owner of Baynum Financial &amp; Analytics, LLC. By day, I'm a benefits coordinator at a financial institution. I manage premium accounts for about 1,500 former employees and reconcile benefits against payroll for more than 5,000 people. That's a lot of numbers that all have to tie out, and getting them there is my kind of puzzle. I built the Power BI reporting I use to keep it all in balance.</p>
-        <p>Before that, I worked in state government accounting as a fiscal analyst, and I'm a certified Intuit QuickBooks ProAdvisor.</p>
-
-        <h3>Why I do this</h3>
-        <p>My passion is data-driven solutions: taking numbers that feel overwhelming and turning them into something easy to understand. Finances can sound tricky. My goal is for you to feel confident in your books, so when tax time comes, you and your tax preparer have clean, reconciled numbers to work from.</p>
-
-        <h3>What I offer</h3>
-        <ul>
-          <li>Chart of accounts setup in QuickBooks Online</li>
-          <li>Recording and categorizing transactions</li>
-          <li>Monthly bank and credit card reconciliations</li>
-          <li>Simple monthly reports you can actually read</li>
-          <li>Power BI dashboards, case by case</li>
-        </ul>
-        <p>I won't oversell myself as the biggest name in town. What I bring is the training, the certification, and hands-on reconciliation experience, applied carefully to your books.</p>
-
-        <h3>Who I work with</h3>
-        <p>Small businesses and sole proprietors, including retail shops, service businesses, and transportation and logistics operations, where I have hands-on industry experience.</p>
-        <p class="note">At this time, I'm not able to take on clients in the agriculture industry.</p>
-
-        <h3>How I work</h3>
-        <p>New projects always excite me, but what matters most is building a lasting relationship: a client who knows they can trust me and my services, and who understands their numbers better because we worked through them together.</p>
-      </section>
 
       <footer>
         © 2026 Baynum Financial &amp; Analytics, LLC · South Carolina<br>
@@ -280,6 +336,14 @@
     </svg>
   </main>
 
-  <a class="corner-link" href="resources.html">📄 Client Resources</a>
+  <script>
+    // Open a panel when linked directly (e.g. baynumfinancial.com/#quickbooks)
+    function openFromHash() {
+      var el = location.hash && document.querySelector('details' + location.hash);
+      if (el) { el.open = true; el.scrollIntoView({ block: 'start' }); }
+    }
+    openFromHash();
+    window.addEventListener('hashchange', openFromHash);
+  </script>
 </body>
 </html>
