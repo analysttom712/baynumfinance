@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Client Resources | Baynum Financial & Analytics</title>
+  <meta name="description" content="Setup instructions and monthly checklists for Baynum Financial & Analytics clients.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0B0B0F;
+      --navy: #0A2540;
+      --blue: #1E6FD9;
+      --ice: #8EC5FF;
+      --white: #FFFFFF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      padding: 32px 16px 48px;
+    }
+    .wrap { max-width: 760px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 28px; }
+    .monogram {
+      width: 64px; height: 64px;
+      margin: 0 auto 14px;
+      border: 2px solid var(--blue);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 20px; letter-spacing: 1px;
+    }
+    h1 { font-size: 24px; letter-spacing: 1px; }
+    .sub { color: var(--ice); font-size: 14px; margin-top: 6px; }
+    .back { display: inline-block; margin-top: 14px; color: var(--ice); font-size: 13px; text-decoration: none; }
+    .back:hover { text-decoration: underline; }
+
+    nav.toc {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      justify-content: center; margin-bottom: 24px;
+    }
+    nav.toc a {
+      font-size: 13px; font-weight: 600;
+      color: var(--white); text-decoration: none;
+      padding: 8px 12px; border-radius: 8px;
+      border: 1px solid rgba(142,197,255,0.35);
+      background: var(--navy);
+    }
+    nav.toc a:hover { background: var(--blue); border-color: var(--blue); }
+
+    details {
+      background: var(--navy);
+      border-radius: 14px;
+      margin-bottom: 14px;
+      border: 1px solid rgba(142,197,255,0.15);
+      overflow: hidden;
+    }
+    summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 18px 20px;
+      font-weight: 700;
+      font-size: 16px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; color: var(--ice); font-size: 22px; font-weight: 400; }
+    details[open] summary::after { content: "–"; }
+    details[open] summary { border-bottom: 1px solid rgba(142,197,255,0.15); }
+    .body { padding: 16px 20px 20px; font-size: 14px; }
+    .body p { margin-bottom: 10px; }
+    .body ol, .body ul { padding-left: 20px; margin-bottom: 10px; }
+    .body li { margin-bottom: 6px; }
+    .body strong { color: var(--ice); }
+    .note {
+      background: rgba(30,111,217,0.15);
+      border-left: 3px solid var(--blue);
+      padding: 10px 12px;
+      border-radius: 6px;
+      margin-top: 8px;
+      font-size: 13px;
+    }
+    .warn {
+      background: rgba(255,255,255,0.06);
+      border-left: 3px solid var(--ice);
+      padding: 10px 12px;
+      border-radius: 6px;
+      margin-top: 8px;
+      font-size: 13px;
+    }
+    code {
+      background: rgba(0,0,0,0.35);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+    .contact {
+      text-align: center;
+      background: var(--navy);
+      border-radius: 14px;
+      padding: 22px 20px;
+      margin-top: 24px;
+    }
+    .contact h2 { font-size: 17px; margin-bottom: 12px; }
+    .btns { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .btn {
+      display: inline-block;
+      padding: 12px 16px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--white);
+      background: var(--black);
+      border: 1px solid rgba(142,197,255,0.35);
+    }
+    .btn:hover { background: var(--blue); border-color: var(--blue); }
+    footer { text-align: center; font-size: 11px; opacity: 0.7; margin-top: 28px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="monogram">BFA</div>
+      <h1>Client Resources</h1>
+      <p class="sub">Setup guides and monthly checklists for Baynum Financial &amp; Analytics clients</p>
+      <a class="back" href="index.html">← Back to main page</a>
+    </header>
+
+    <nav class="toc">
+      <a href="#getting-started">Getting started</a>
+      <a href="#quickbooks">Add me to QuickBooks</a>
+      <a href="#documents">Sending documents</a>
+      <a href="#monthly">Monthly checklist</a>
+      <a href="#pos">POS &amp; inventory</a>
+    </nav>
+
+    <details id="getting-started" open>
+      <summary>1. Getting started</summary>
+      <div class="body">
+        <p>Welcome! Here's what happens in your first two weeks:</p>
+        <ol>
+          <li><strong>Engagement letter.</strong> I'll send a short agreement covering your services, monthly fee, and what each of us is responsible for. Please sign and return it.</li>
+          <li><strong>QuickBooks access.</strong> If you already use QuickBooks Online, add me as your accountant (see step 2). If you don't, I'll set up a new company file for you.</li>
+          <li><strong>Gather your records.</strong> Bank and credit card statements, prior tax return, any loan paperwork, and your sales/POS reports. Use the secure upload link I send you, not email.</li>
+          <li><strong>Kickoff call.</strong> We'll walk through your accounts, how you get paid, and what reports you want each month.</li>
+        </ol>
+      </div>
+    </details>
+
+    <details id="quickbooks">
+      <summary>2. Add me as your accountant in QuickBooks</summary>
+      <div class="body">
+        <p>This takes about two minutes. You need to be the <strong>primary admin or a company admin</strong> on your QuickBooks account.</p>
+        <ol>
+          <li>Sign in to QuickBooks Online.</li>
+          <li>Click the gear icon (⚙️) at the top right and select <strong>Manage users</strong>.</li>
+          <li>Open the <strong>Accounting firms</strong> tab and click <strong>Invite</strong>.</li>
+          <li>Enter <strong>Tom Baynum</strong> and <code>tom@baynumfinancial.com</code>.</li>
+          <li>Click <strong>Send</strong>.</li>
+        </ol>
+        <p class="note">You stay in control: you can remove my access at any time from that same screen.</p>
+      </div>
+    </details>
+
+    <details id="documents">
+      <summary>3. Sending documents securely</summary>
+      <div class="body">
+        <p>I'll send you a <strong>secure upload link</strong> when we start working together. Please use it for anything financial.</p>
+        <ul>
+          <li>Statements, receipts, invoices, and reports: use the secure link.</li>
+          <li>Photos of paper receipts are fine. Make sure the date, vendor, and total are readable.</li>
+          <li>Label files with the month, for example <code>2026-10 Bank Statement.pdf</code>.</li>
+        </ul>
+        <p class="warn"><strong>Please never email</strong> Social Security numbers, full bank or card account numbers, or copies of your ID. I'll only ask for what's actually needed for your books.</p>
+      </div>
+    </details>
+
+    <details id="monthly">
+      <summary>4. Monthly checklist</summary>
+      <div class="body">
+        <p>To keep your books current, please send these by the <strong>5th of each month</strong> for the month before:</p>
+        <ul>
+          <li>Any bank or credit card account that isn't connected to QuickBooks: the monthly statement.</li>
+          <li>Receipts for cash purchases.</li>
+          <li>Your POS end-of-month sales report (if your POS isn't synced to QuickBooks).</li>
+          <li>Anything new: a loan, a new vendor, equipment purchases, or changes in how you get paid.</li>
+          <li>Answers to any questions I've sent about unclear transactions.</li>
+        </ul>
+        <p>I'll send your monthly reports (Profit &amp; Loss and Balance Sheet) once the month is reconciled.</p>
+      </div>
+    </details>
+
+    <details id="pos">
+      <summary>5. POS &amp; inventory</summary>
+      <div class="body">
+        <p>If you sell products, your point-of-sale system should do the heavy lifting:</p>
+        <ul>
+          <li><strong>Track every item separately</strong>, including each size, flavor, or variant, so counts and costs are accurate.</li>
+          <li><strong>Enter your cost</strong> for each item when you receive stock. This is how we calculate your real profit margin.</li>
+          <li><strong>Count your inventory</strong> at least once a quarter and fix any differences in the POS.</li>
+          <li><strong>Connect your POS to QuickBooks</strong> if it supports it. I can set up and map the connection for you.</li>
+        </ul>
+        <p class="note">Not sure which POS fits your business, or need it set up and connected? That's a service I offer. Just ask.</p>
+      </div>
+    </details>
+
+    <div class="contact">
+      <h2>Questions? Reach out anytime.</h2>
+      <div class="btns">
+        <a class="btn" href="mailto:tom@baynumfinancial.com">Email</a>
+        <a class="btn" href="tel:+18037666175">Call (803) 766-6175</a>
+      </div>
+    </div>
+
+    <footer>
+      © 2026 Baynum Financial &amp; Analytics · South Carolina<br>
+      Bookkeeping and financial reporting services. Not a CPA firm. General guidance only.
+    </footer>
+  </div>
+</body>
+</html>
