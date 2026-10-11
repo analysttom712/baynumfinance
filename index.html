@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Baynum Financial & Analytics</title>
+  <meta name="description" content="Bookkeeping, financial reporting, and Power BI dashboards for small businesses in South Carolina.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0B0B0F;
+      --navy: #0A2540;
+      --blue: #1E6FD9;
+      --ice: #8EC5FF;
+      --white: #FFFFFF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: var(--black);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+    .card {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 460px;
+      background: var(--navy);
+      border-radius: 18px;
+      padding: 40px 28px 32px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    /* Blue wave accent, echoing the business card */
+    .wave {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      width: 100%;
+      height: 90px;
+      pointer-events: none;
+    }
+    .content { position: relative; z-index: 1; }
+    .monogram {
+      width: 76px; height: 76px;
+      margin: 0 auto 18px;
+      border: 2px solid var(--blue);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 24px; letter-spacing: 1px;
+    }
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .tagline {
+      color: var(--ice);
+      font-size: 14px;
+      margin: 10px 0 6px;
+    }
+    .owner {
+      font-size: 13px;
+      opacity: 0.85;
+      margin-bottom: 28px;
+    }
+    .links { display: flex; flex-direction: column; gap: 12px; }
+    .btn {
+      display: block;
+      padding: 14px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--white);
+      background: var(--black);
+      border: 1px solid rgba(142,197,255,0.35);
+      transition: background 0.15s, border-color 0.15s, transform 0.15s;
+    }
+    .btn:hover, .btn:focus-visible {
+      background: var(--blue);
+      border-color: var(--blue);
+      transform: translateY(-1px);
+      outline: none;
+    }
+    .btn.primary { background: var(--blue); border-color: var(--blue); }
+    .btn.primary:hover { background: #2B7FF0; }
+    footer {
+      margin-top: 28px;
+      font-size: 11px;
+      opacity: 0.7;
+      line-height: 1.6;
+      padding-bottom: 40px;
+    }
+    /* Client Resources link, pinned to the bottom-left of the page */
+    .corner-link {
+      position: fixed;
+      left: 20px;
+      bottom: 20px;
+      z-index: 10;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: var(--navy);
+      border: 1px solid rgba(142,197,255,0.35);
+      color: var(--ice);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .corner-link:hover, .corner-link:focus-visible {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: var(--white);
+      outline: none;
+    }
+    /* On phones, drop it below the card so it never covers the buttons */
+    @media (max-width: 560px) {
+      body { flex-direction: column; }
+      .corner-link {
+        position: static;
+        align-self: flex-start;
+        margin-top: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="content">
+      <div class="monogram">BFA</div>
+      <h1>Baynum Financial<br>&amp; Analytics</h1>
+      <p class="tagline">Bookkeeping · Financial Reporting · Power BI Dashboards</p>
+      <p class="owner">Tom Baynum, Owner</p>
+
+      <nav class="links">
+        <!-- EDIT: change the email address if yours is different -->
+        <a class="btn primary" href="mailto:tom@baynumfinancial.com?subject=Consultation%20request">Request a Consultation</a>
+
+        <a class="btn" href="https://www.linkedin.com/company/baynumfinancial" target="_blank" rel="noopener">LinkedIn: Baynum Financial &amp; Analytics</a>
+
+        <a class="btn" href="https://www.linkedin.com/in/thomas-baynumacct" target="_blank" rel="noopener">LinkedIn: Tom Baynum</a>
+
+        <a class="btn" href="mailto:tom@baynumfinancial.com">Email</a>
+
+        <a class="btn" href="tel:+18037666175">Call (803) 766-6175</a>
+
+        <a class="btn" href="https://github.com/analysttom712" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+
+      <footer>
+        © 2026 Baynum Financial &amp; Analytics · South Carolina<br>
+        Bookkeeping and financial reporting services. Not a CPA firm.
+      </footer>
+    </div>
+
+    <svg class="wave" viewBox="0 0 460 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,55 C110,15 230,95 460,35 L460,90 L0,90 Z" fill="#1E6FD9"/>
+      <path d="M0,72 C140,40 260,100 460,58 L460,90 L0,90 Z" fill="#0B0B0F"/>
+    </svg>
+  </main>
+
+  <a class="corner-link" href="resources.html">📄 Client Resources</a>
+</body>
+</html>
