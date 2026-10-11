@@ -99,6 +99,40 @@
       line-height: 1.6;
       padding-bottom: 40px;
     }
+    /* Client Resources link, pinned to the bottom-left of the page */
+    .corner-link {
+      position: fixed;
+      left: 20px;
+      bottom: 20px;
+      z-index: 10;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: var(--navy);
+      border: 1px solid rgba(142,197,255,0.35);
+      color: var(--ice);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .corner-link:hover, .corner-link:focus-visible {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: var(--white);
+      outline: none;
+    }
+    /* On phones, drop it below the card so it never covers the buttons */
+    @media (max-width: 560px) {
+      body { flex-direction: column; }
+      .corner-link {
+        position: static;
+        align-self: flex-start;
+        margin-top: 16px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -135,5 +169,7 @@
       <path d="M0,72 C140,40 260,100 460,58 L460,90 L0,90 Z" fill="#0B0B0F"/>
     </svg>
   </main>
+
+  <a class="corner-link" href="resources.html">📄 Client Resources</a>
 </body>
 </html>
