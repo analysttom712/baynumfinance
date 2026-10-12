@@ -233,6 +233,14 @@
       </div>
     </div>
 
+    <div class="contact">
+      <h2>Happy with your service?</h2>
+      <p style="font-size:14px;margin-bottom:14px;opacity:0.9;">A quick Google review helps other business owners find me. Thank you!</p>
+      <div class="btns">
+        <a class="btn" id="review-link" href="https://g.page/r/CcT52o1o3Wi6ECE/review" target="_blank" rel="noopener">Leave a Google Review</a>
+      </div>
+    </div>
+
     <footer>
       © 2026 Baynum Financial &amp; Analytics, LLC · South Carolina<br>
       Bookkeeping and financial reporting services. Not a CPA firm. General guidance only.<br>
@@ -241,6 +249,14 @@
   </div>
 
   <script>
+    // Count Google review link clicks in Google Analytics.
+    var reviewLink = document.getElementById('review-link');
+    if (reviewLink) {
+      reviewLink.addEventListener('click', function () {
+        if (typeof gtag === 'function') gtag('event', 'review_click', { placement: 'resources_page' });
+      });
+    }
+
     // Count email and phone clicks in Google Analytics as "contact_click" events.
     // Only the method (email/phone) and page location are sent, never the address or number.
     document.querySelectorAll('a[href^="mailto:"], a[href^="tel:"]').forEach(function (link) {

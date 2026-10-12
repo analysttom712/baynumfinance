@@ -346,6 +346,8 @@
             <p class="signed-up">Already signed up?<br><a href="resources.html">Go to Client Resources →</a></p>
           </div>
         </details>
+
+        <a class="btn" id="review-link" href="https://g.page/r/CcT52o1o3Wi6ECE/review" target="_blank" rel="noopener">Leave a Google Review</a>
       </nav>
 
       <footer>
@@ -369,6 +371,14 @@
     }
     openFromHash();
     window.addEventListener('hashchange', openFromHash);
+
+    // Count Google review link clicks in Google Analytics.
+    var reviewLink = document.getElementById('review-link');
+    if (reviewLink) {
+      reviewLink.addEventListener('click', function () {
+        if (typeof gtag === 'function') gtag('event', 'review_click', { placement: 'main_page' });
+      });
+    }
 
     // Count email and phone clicks in Google Analytics as "contact_click" events.
     // Only the method (email/phone) and button location are sent, never the address or number.
