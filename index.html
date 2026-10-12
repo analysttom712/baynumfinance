@@ -3,6 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1WZKCX57DY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-1WZKCX57DY');
+  </script>
+
   <title>Baynum Financial &amp; Analytics, LLC | Bookkeeping &amp; Power BI · South Carolina &amp; Remote</title>
   <meta name="description" content="Bookkeeping, financial reporting, and Power BI dashboards for small to medium businesses in South Carolina and remotely.">
   <link rel="canonical" href="https://baynumfinancial.com/">
@@ -339,7 +350,8 @@
 
       <footer>
         © 2026 Baynum Financial &amp; Analytics, LLC · South Carolina · Serving clients remotely<br>
-        Bookkeeping and financial reporting services. Not a CPA firm.
+        Bookkeeping and financial reporting services. Not a CPA firm.<br>
+        This site uses Google Analytics to understand visitor traffic. <a href="privacy.html" style="color:inherit;">Privacy Policy</a>
       </footer>
     </div>
 
@@ -357,6 +369,18 @@
     }
     openFromHash();
     window.addEventListener('hashchange', openFromHash);
+
+    // Count email and phone clicks in Google Analytics as "contact_click" events.
+    // Only the method (email/phone) and button location are sent, never the address or number.
+    document.querySelectorAll('a[href^="mailto:"], a[href^="tel:"]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        if (typeof gtag !== 'function') return;
+        gtag('event', 'contact_click', {
+          method: link.href.indexOf('tel:') === 0 ? 'phone' : 'email',
+          placement: link.classList.contains('primary') ? 'consultation_button' : 'contact_panel'
+        });
+      });
+    });
   </script>
 </body>
 </html>
