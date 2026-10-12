@@ -128,6 +128,8 @@
       margin-bottom: 28px;
     }
     .links { display: flex; flex-direction: column; gap: 12px; }
+    .book-note { font-size: 13px; line-height: 1.5; opacity: 0.9; margin: -4px 0 4px; text-align: center; }
+    .book-note a { color: inherit; font-weight: 600; text-decoration: underline; white-space: nowrap; }
     .btn {
       display: block;
       padding: 14px 18px;
@@ -281,7 +283,8 @@
       <p class="owner">Thomas Baynum, Owner</p>
 
       <nav class="links">
-        <a class="btn primary" href="mailto:tom@baynumfinancial.com?subject=Consultation%20request">Request a Consultation</a>
+        <a class="btn primary" id="booking-link" href="https://bookings.cloud.microsoft/book/BaynumFinancialAnalyticsLLC1@Baynumfinancial.com/?ismsaljsauthenabled=true" target="_blank" rel="noopener">Book a Consultation</a>
+        <p class="book-note">Don't see a time that works? <a href="mailto:tom@baynumfinancial.com?subject=Consultation%20request">Email me</a> or <a href="tel:+18037666175">call (803) 766-6175</a> and we'll find one.</p>
 
         <details class="panel" name="panel" id="contact">
           <summary class="btn">Contact</summary>
@@ -381,6 +384,14 @@
       });
     }
 
+    // Count booking link clicks in Google Analytics.
+    var bookingLink = document.getElementById('booking-link');
+    if (bookingLink) {
+      bookingLink.addEventListener('click', function () {
+        if (typeof gtag === 'function') gtag('event', 'booking_click', { placement: 'main_page' });
+      });
+    }
+
     // Count email and phone clicks in Google Analytics as "contact_click" events.
     // Only the method (email/phone) and button location are sent, never the address or number.
     document.querySelectorAll('a[href^="mailto:"], a[href^="tel:"]').forEach(function (link) {
@@ -388,7 +399,7 @@
         if (typeof gtag !== 'function') return;
         gtag('event', 'contact_click', {
           method: link.href.indexOf('tel:') === 0 ? 'phone' : 'email',
-          placement: link.classList.contains('primary') ? 'consultation_button' : 'contact_panel'
+          placement: link.closest('.book-note') ? 'booking_fallback' : 'contact_panel'
         });
       });
     });
