@@ -311,7 +311,7 @@
 
       <nav class="links">
         <a class="btn primary" id="booking-link" href="https://bookings.cloud.microsoft/book/BaynumFinancialAnalyticsLLC1@Baynumfinancial.com/?ismsaljsauthenabled=true" target="_blank" rel="noopener">Book a Consultation</a>
-        <p class="book-note">Don't see a time that works? <a href="mailto:tom@baynumfinancial.com?subject=Consultation%20request">Email me</a> or <a href="tel:+18037666175">call (803) 766-6175</a> and we'll find one.</p>
+        <p class="book-note">Don't see a time that works? <a href="#contact" id="contact-direct">Contact me directly</a>.</p>
 
         <details class="panel" name="panel" id="contact">
           <summary class="btn">Contact</summary>
@@ -319,9 +319,7 @@
             <div class="sub-links">
               <a href="mailto:tom@baynumfinancial.com">Email <span>tom@baynumfinancial.com</span></a>
               <a href="tel:+18037666175">Call <span>(803) 766-6175</span></a>
-              <a href="https://www.linkedin.com/in/thomas-baynumacct" target="_blank" rel="noopener">LinkedIn <span>Personal</span></a>
-              <a href="https://www.linkedin.com/company/baynumfinancial" target="_blank" rel="noopener">LinkedIn <span>Business</span></a>
-              <a href="https://github.com/analysttom712" target="_blank" rel="noopener">GitHub <span>analysttom712</span></a>
+              <a href="https://www.linkedin.com/in/thomas-baynumacct" target="_blank" rel="noopener">LinkedIn <span>Thomas Baynum</span></a>
             </div>
           </div>
         </details>
@@ -334,12 +332,12 @@
                    alt="Thomas Baynum, owner of Baynum Financial &amp; Analytics, smiling in a navy striped polo">
               <figcaption>Meet the Owner<span>Thomas Baynum</span></figcaption>
             </figure>
-            <p>I'm Thomas Baynum, owner of Baynum Financial &amp; Analytics, LLC. By day, I'm a benefits coordinator at a financial institution. I manage premium accounts for about 1,500 former employees and reconcile benefits against payroll for more than 5,000 people. That's a lot of numbers that all have to tie out, and getting them there is my kind of puzzle. I built the Power BI reporting I use to keep it all in balance.</p>
+            <p>I'm Thomas Baynum, owner of Baynum Financial &amp; Analytics, LLC. By day, I work in benefits at a financial institution, where I've served thousands of individuals by reconciling their accounting activity. Every number has to tie out, and getting it there is my kind of puzzle. I built the Power BI reporting I use to keep it all in balance.</p>
             <p>I'm also a certified Intuit QuickBooks ProAdvisor.</p>
 
             <h3>Industry experience</h3>
             <ul>
-              <li><strong>Financial services:</strong> benefits and payroll reconciliation for thousands of employees and former employees</li>
+              <li><strong>Financial services:</strong> benefits and payroll reconciliation</li>
               <li><strong>Government accounting:</strong> fiscal analyst for a South Carolina state agency</li>
               <li><strong>Food service:</strong> assistant general manager</li>
               <li><strong>Transportation and logistics:</strong> truck driver and owner-operator, running my own business on the road</li>
@@ -360,7 +358,7 @@
               <li>Custom visual dashboards, built around each client's business</li>
               <li>Financial analysis: gross and net profit margins, liquidity ratios, inventory turnover, and more</li>
             </ul>
-            <p>I won't oversell myself as the biggest name in town. What I bring is the training, the certification, and hands-on reconciliation experience, applied carefully to your books.</p>
+            <p>What I bring is the training, the certification, and hands-on reconciliation experience, applied carefully to your books.</p>
 
             <h3>Who I work with</h3>
             <p>Small to medium businesses in South Carolina, and remotely wherever you are. My background in food service and trucking means I already speak the language of restaurants, logistics, and owner-operated businesses.</p>
@@ -416,6 +414,18 @@
       });
     }
 
+    // "Contact me directly" opens the Contact panel, even if clicked twice.
+    var contactDirect = document.getElementById('contact-direct');
+    if (contactDirect) {
+      contactDirect.addEventListener('click', function (e) {
+        e.preventDefault();
+        var panel = document.getElementById('contact');
+        panel.open = true;
+        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (typeof gtag === 'function') gtag('event', 'contact_direct_click', { placement: 'booking_fallback' });
+      });
+    }
+
     // Count booking link clicks in Google Analytics.
     var bookingLink = document.getElementById('booking-link');
     if (bookingLink) {
@@ -431,7 +441,7 @@
         if (typeof gtag !== 'function') return;
         gtag('event', 'contact_click', {
           method: link.href.indexOf('tel:') === 0 ? 'phone' : 'email',
-          placement: link.closest('.book-note') ? 'booking_fallback' : 'contact_panel'
+          placement: 'contact_panel'
         });
       });
     });
