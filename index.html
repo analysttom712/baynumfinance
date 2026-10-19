@@ -51,6 +51,7 @@
     "telephone": "+1-803-766-6175",
     "areaServed": "South Carolina",
     "founder": { "@type": "Person", "name": "Thomas Baynum" },
+    "brand": { "@type": "Brand", "name": "CurieLedger", "url": "https://curieledger.com/" },
     "sameAs": [
       "https://www.linkedin.com/company/baynumfinancial",
       "https://www.linkedin.com/in/thomas-baynumacct",
@@ -293,6 +294,41 @@
       text-align: center;
     }
     .signed-up a { color: var(--ice); font-weight: 600; }
+    /* CurieLedger product link */
+    .product-head {
+      color: var(--ice);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin: 10px 0 -2px;
+    }
+    .product-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      text-align: left;
+      text-decoration: none;
+      color: var(--white);
+      background: linear-gradient(135deg, #0A2240, #0B3A5E);
+      border: 1px solid rgba(0,225,247,0.55);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+    }
+    .product-link img { width: 48px; height: 48px; object-fit: contain; flex-shrink: 0; }
+    .product-link b { display: block; font-size: 16px; font-weight: 700; }
+    .product-link b em { font-style: normal; color: #00E1F7; }
+    .product-link span { font-size: 13px; line-height: 1.4; }
+    .product-link small { display: block; font-size: 12px; color: var(--ice); margin-top: 3px; }
+    .product-link .go { margin-left: auto; color: #00E1F7; font-size: 18px; font-weight: 700; }
+    .product-link:hover, .product-link:focus-visible {
+      transform: translateY(-1px);
+      border-color: #00E1F7;
+      box-shadow: 0 0 0 3px rgba(0,225,247,0.35);
+      outline: none;
+    }
     .social {
       display: flex;
       justify-content: center;
@@ -360,6 +396,7 @@
             </figure>
             <p>I'm Thomas Baynum, owner of Baynum Financial &amp; Analytics, LLC. By day, I work in benefits at a financial institution, where I've served thousands of individuals by reconciling their accounting activity. Every number has to tie out, and getting it there is my kind of puzzle. I built the Power BI reporting I use to keep it all in balance.</p>
             <p>I'm also a certified Intuit QuickBooks ProAdvisor, at the Gold tier.</p>
+            <p>I also founded <a href="https://curieledger.com/" target="_blank" rel="noopener" style="color:var(--ice);font-weight:600;">CurieLedger</a>, radiation safety compliance software built with my wife, a working Radiation Safety Officer. It's a Baynum Financial &amp; Analytics, LLC company that brings the same reconcile-everything discipline to radiation safety records.</p>
 
             <h3>Industry experience</h3>
             <ul>
@@ -407,6 +444,13 @@
           </div>
         </details>
 
+        <p class="product-head">Our software</p>
+        <a class="product-link" id="curieledger-link" href="https://curieledger.com/" target="_blank" rel="noopener">
+          <img src="assets/curieledger-mark.png" width="48" height="48" alt="">
+          <span><b>Curie<em>Ledger</em>™</b>Radiation safety compliance software for RSOs and the facilities they support<small>curieledger.com · Try the free demo</small></span>
+          <span class="go" aria-hidden="true">→</span>
+        </a>
+
         <a class="btn" id="review-link" href="https://g.page/r/CcT52o1o3Wi6ECE/review" target="_blank" rel="noopener">Leave a Google Review</a>
       </nav>
 
@@ -451,6 +495,14 @@
     if (reviewLink) {
       reviewLink.addEventListener('click', function () {
         if (typeof gtag === 'function') gtag('event', 'review_click', { placement: 'main_page' });
+      });
+    }
+
+    // Count CurieLedger product link clicks in Google Analytics.
+    var curieLink = document.getElementById('curieledger-link');
+    if (curieLink) {
+      curieLink.addEventListener('click', function () {
+        if (typeof gtag === 'function') gtag('event', 'curieledger_click', { placement: 'main_page' });
       });
     }
 
