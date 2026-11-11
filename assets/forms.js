@@ -115,8 +115,7 @@
     // Keep the form on screen in case no email app opens; show the help box under it.
     var done = document.getElementById('form-done');
     done.hidden = false;
-    done.dataset.message = lines.join('
-');
+    done.dataset.message = lines.join('\n');
     done.querySelector('h2').focus();
   });
   var copyBtn = document.getElementById('f-copy');
