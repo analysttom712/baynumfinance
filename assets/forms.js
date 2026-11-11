@@ -36,6 +36,12 @@
     err.hidden = !msg;
   }
 
+  window.bfaClear = function (form) {
+    form.querySelectorAll('[aria-invalid]').forEach(function (el) { show(el, ''); });
+    form.querySelectorAll('.field.is-invalid').forEach(function (f) { f.classList.remove('is-invalid'); });
+    var s = form.querySelector('.form-summary'); if (s) s.hidden = true;
+  };
+
   window.bfaValidate = function (form) {
     var summary = form.querySelector('.form-summary');
     var list = summary && summary.querySelector('.form-summary__list');
@@ -70,6 +76,7 @@
       if (bad.length) { e.preventDefault(); e.stopImmediatePropagation(); bad[0].focus(); }
     });
     form.addEventListener('change', function () { if (tried) window.bfaValidate(form); });
+    form.addEventListener('input', function () { if (tried) window.bfaValidate(form); });
     form.addEventListener('focusout', function () { if (tried) window.bfaValidate(form); });
     form.addEventListener('bfa:reset', function () { tried = false; });
   });
@@ -103,10 +110,21 @@
     if (f.message.value.trim()) lines.push('', f.message.value.trim());
     var href = 'mailto:tom@baynumfinancial.com?subject=' + encodeURIComponent('Books Checkup request from ' + f.name.value.trim()) +
       '&body=' + encodeURIComponent(lines.join('\n'));
-    if (typeof gtag === 'function') gtag('event', 'checkup_form_sent', { audience: aud });
+    if (typeof gtag === 'function') gtag('event', 'checkup_mailto_opened', { audience: aud });
     window.location.href = href;
+    // Keep the form on screen in case no email app opens; show the help box under it.
     var done = document.getElementById('form-done');
-    done.hidden = false; cf.hidden = true;
+    done.hidden = false;
+    done.dataset.message = lines.join('
+');
     done.querySelector('h2').focus();
+  });
+  var copyBtn = document.getElementById('f-copy');
+  if (copyBtn) copyBtn.addEventListener('click', function () {
+    var msg = document.getElementById('form-done').dataset.message || '';
+    var note = document.getElementById('f-copied');
+    (navigator.clipboard ? navigator.clipboard.writeText(msg) : Promise.reject())
+      .then(function () { note.textContent = 'Copied. Paste it into an email to tom@baynumfinancial.com.'; })
+      .catch(function () { note.textContent = 'Copy did not work here. Please email tom@baynumfinancial.com.'; });
   });
 })();

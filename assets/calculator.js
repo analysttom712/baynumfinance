@@ -20,7 +20,8 @@
   function render() {
     var miles = val('c-miles');
     var fixed = sum(fixedIds), variable = sum(varIds);
-    var bad = !(miles > 0) || isNaN(fixed) || isNaN(variable) || fixed < 0 || variable < 0;
+    var anyNeg = fixedIds.concat(varIds).some(function (id) { return val(id) < 0; });
+    var bad = !(miles > 0) || isNaN(fixed) || isNaN(variable) || anyNeg;
     if (bad) {
       out.big.textContent = '—';
       out.say.textContent = !(miles > 0) ? 'Add your miles to see a result.' : 'Fix the boxes marked "Information needed" to see a result.';
@@ -72,8 +73,7 @@
   document.getElementById('c-clear').addEventListener('click', function () {
     form.querySelectorAll('input').forEach(function (i) { i.value = ''; });
     out.note.hidden = true;
-    window.bfaValidate && form.querySelectorAll('.field').forEach(function (f) { f.classList.remove('is-invalid'); var er = f.querySelector('.field-error'); if (er) { er.hidden = true; er.textContent = ''; } });
-    var s = form.querySelector('.form-summary'); if (s) s.hidden = true;
+    window.bfaClear(form);
     form.dispatchEvent(new Event('bfa:reset'));
     render();
     document.getElementById('c-miles').focus();
