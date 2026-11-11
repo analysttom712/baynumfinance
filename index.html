@@ -337,8 +337,7 @@
       <p class="book-note"><strong>Sign up by Jan 31, 2027 and get 10% off</strong> getting your 2026 books ready for tax time. I prepare clean books for your tax preparer; I don't file tax returns.</p>
 
       <nav class="links">
-        <a class="btn primary" id="booking-link" href="https://bookings.cloud.microsoft/book/BaynumFinancialAnalyticsLLC1@Baynumfinancial.com/?ismsaljsauthenabled=true" target="_blank" rel="noopener">Book a Free Intro Call</a>
-        <p class="book-note">Don't see a time that works? <a href="#contact" id="contact-direct">Contact me directly</a>.</p>
+        <a class="btn primary" id="contact-direct" href="#contact">Book a Free Intro Call</a>
 
         <details class="panel" name="panel" id="contact">
           <summary class="btn">Contact</summary>
@@ -455,7 +454,7 @@
       });
     }
 
-    // "Contact me directly" opens the Contact panel, even if clicked twice.
+    // "Book a Free Intro Call" opens the Contact panel, even if clicked twice.
     var contactDirect = document.getElementById('contact-direct');
     if (contactDirect) {
       contactDirect.addEventListener('click', function (e) {
@@ -463,15 +462,7 @@
         var panel = document.getElementById('contact');
         panel.open = true;
         panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        if (typeof gtag === 'function') gtag('event', 'contact_direct_click', { placement: 'booking_fallback' });
-      });
-    }
-
-    // Count booking link clicks in Google Analytics.
-    var bookingLink = document.getElementById('booking-link');
-    if (bookingLink) {
-      bookingLink.addEventListener('click', function () {
-        if (typeof gtag === 'function') gtag('event', 'booking_click', { placement: 'main_page' });
+        if (typeof gtag === 'function') gtag('event', 'intro_call_click', { placement: 'main_page' });
       });
     }
 
