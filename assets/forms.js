@@ -108,7 +108,7 @@
     if (!trucks.hidden && f.trucks.value) lines.push('Trucks: ' + f.trucks.value);
     lines.push('Uses QuickBooks Online: ' + f.qbo.value);
     if (f.message.value.trim()) lines.push('', f.message.value.trim());
-    var href = 'mailto:tom@baynumfinancial.com?subject=' + encodeURIComponent('Books Checkup request from ' + f.name.value.trim()) +
+    var href = 'mailto:baynumfinancial@gmail.com?subject=' + encodeURIComponent('Books Checkup request from ' + f.name.value.trim()) +
       '&body=' + encodeURIComponent(lines.join('\n'));
     if (typeof gtag === 'function') gtag('event', 'checkup_mailto_opened', { audience: aud });
     window.location.href = href;
@@ -123,7 +123,7 @@
     var msg = document.getElementById('form-done').dataset.message || '';
     var note = document.getElementById('f-copied');
     (navigator.clipboard ? navigator.clipboard.writeText(msg) : Promise.reject())
-      .then(function () { note.textContent = 'Copied. Paste it into an email to tom@baynumfinancial.com.'; })
-      .catch(function () { note.textContent = 'Copy did not work here. Please email tom@baynumfinancial.com.'; });
+      .then(function () { note.textContent = 'Copied. Paste it into an email to baynumfinancial@gmail.com.'; })
+      .catch(function () { note.textContent = 'Copy did not work here. Please email baynumfinancial@gmail.com.'; });
   });
 })();
