@@ -302,3 +302,10 @@ textarea { min-height:120px; }
 .bar i { display:block; height:100%; background:var(--brand); border-radius:9px; }
 .bar-row.gold .bar i { background:var(--gold); }
 .bar-row b { text-align:right; font-variant-numeric:tabular-nums; }
+
+/* Calculator: "Example" tags. A box with a made-up number has a dashed border and a tag. */
+.ex-tag { display:inline-block; margin-left:6px; padding:0 8px; border:1.5px dashed var(--gold-text); border-radius:999px; font-size:.75rem; font-weight:700; line-height:1.5; color:var(--gold-text); vertical-align:middle; }
+.field:not(.is-example) .ex-tag { display:none; }
+.field.is-example input { border-style:dashed; }
+.calc-notes { margin:12px 0; padding:0; list-style:none; }
+.calc-notes li { margin-top:8px; padding-left:12px; border-left:3px solid var(--gold); font-size:.9375rem; }

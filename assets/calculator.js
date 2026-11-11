@@ -6,26 +6,44 @@
   var usd = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
   var cents = function (x) { return usd.format(x); };
   var fixedIds = ['c-payment', 'c-insurance', 'c-permits'];
-  var varIds = ['c-fuel', 'c-maint', 'c-tolls', 'c-pay', 'c-other'];
+  var varIds = ['c-maint', 'c-tolls', 'c-pay', 'c-other'];   // fuel is added from price and MPG
   var out = {
     big: document.getElementById('r-cpm'), total: document.getElementById('r-total'),
     fixed: document.getElementById('r-fixed'), variable: document.getElementById('r-var'),
+    fuel: document.getElementById('r-fuel'),
     rpm: document.getElementById('r-rpm'), ppm: document.getElementById('r-ppm'),
     say: document.getElementById('r-say'), load: document.getElementById('r-load'),
-    revRows: document.querySelectorAll('.r-rev'), note: document.getElementById('r-example')
+    revRows: document.querySelectorAll('.r-rev'), note: document.getElementById('r-example'),
+    payNote: document.getElementById('r-pay-note')
   };
   function val(id) { var x = n(document.getElementById(id).value); return isFinite(x) ? x : NaN; }
   function sum(ids) { return ids.reduce(function (s, id) { return s + val(id); }, 0); }
 
+  // "Example" tags: every box starts with a made-up number. Typing in a box (or clearing) marks it as yours.
+  var inputs = Array.prototype.slice.call(form.querySelectorAll('input[data-number]'));
+  inputs.forEach(function (i) { i.closest('.field').classList.add('is-example'); });
+  function exampleCount() { return form.querySelectorAll('.field.is-example').length; }
+  function paintNote() {
+    var left = exampleCount();
+    out.note.hidden = left === 0;
+    out.note.textContent = left === inputs.length ? 'Example numbers. Replace them with yours.'
+      : left === 1 ? '1 box still has an example number.'
+      : left + ' boxes still have example numbers.';
+  }
+
   function render() {
-    var miles = val('c-miles');
-    var fixed = sum(fixedIds), variable = sum(varIds);
-    var anyNeg = fixedIds.concat(varIds).some(function (id) { return val(id) < 0; });
-    var bad = !(miles > 0) || isNaN(fixed) || isNaN(variable) || anyNeg;
+    var miles = val('c-miles'), price = val('c-fuel-price'), mpg = val('c-mpg');
+    var fuel = mpg > 0 ? miles / mpg * price : NaN;
+    var fixed = sum(fixedIds), variable = sum(varIds) + fuel;
+    var anyNeg = fixedIds.concat(varIds, ['c-fuel-price']).some(function (id) { return val(id) < 0; });
+    var bad = !(miles > 0) || !(mpg > 0) || isNaN(fixed) || isNaN(variable) || anyNeg;
+    out.payNote.hidden = val('c-pay') > 0;
     if (bad) {
       out.big.textContent = '—';
-      out.say.textContent = !(miles > 0) ? 'Add your miles to see a result.' : 'Fix the boxes marked "Information needed" to see a result.';
-      [out.total, out.fixed, out.variable, out.rpm, out.ppm].forEach(function (o) { o.textContent = '—'; });
+      out.say.textContent = !(miles > 0) ? 'Add your miles to see a result.'
+        : !(mpg > 0) ? 'Add your MPG to see a result.'
+        : 'Fix the boxes marked "Information needed" to see a result.';
+      [out.total, out.fixed, out.variable, out.fuel, out.rpm, out.ppm].forEach(function (o) { o.textContent = '—'; });
       out.load.textContent = '';
       return;
     }
@@ -34,7 +52,8 @@
     out.total.textContent = cents(total);
     out.fixed.textContent = cents(fixed / miles) + '/mi';
     out.variable.textContent = cents(variable / miles) + '/mi';
-    out.say.textContent = 'Below ' + cents(cpm) + ' per mile, you lose money on a load.';
+    out.fuel.textContent = cents(price / mpg) + '/mi';
+    out.say.textContent = 'Below ' + cents(cpm) + ' per mile, you lose money.';
     out.say.className = 'calc-say';
 
     var rev = val('c-revenue');
@@ -46,7 +65,7 @@
       out.ppm.textContent = (ppm < 0 ? 'Loss ' : '') + cents(ppm) + '/mi';
       out.ppm.className = ppm < 0 ? 'is-loss' : 'is-gain';
       out.say.textContent = ppm >= 0
-        ? 'At these numbers you keep ' + cents(ppm) + ' for every mile. Below ' + cents(cpm) + ' per mile, you lose money on a load.'
+        ? 'At these numbers you keep ' + cents(ppm) + ' for every mile. Below ' + cents(cpm) + ' per mile, you lose money.'
         : 'At these numbers you lose ' + cents(-ppm) + ' on every mile (a loss). You need more than ' + cents(cpm) + ' per mile to break even.';
     }
 
@@ -61,7 +80,15 @@
     }
   }
 
-  form.addEventListener('input', function () { out.note.hidden = true; render(); });
+  form.addEventListener('input', function (e) {
+    var f = e.target.closest && e.target.closest('.field');
+    if (f) f.classList.remove('is-example');
+    paintNote(); render();
+  });
+  // Tap a box and its number is selected, ready to type over.
+  inputs.forEach(function (i) {
+    i.addEventListener('focus', function () { setTimeout(function () { try { i.select(); } catch (x) {} }, 0); });
+  });
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var bad = window.bfaValidate(form);
@@ -71,12 +98,13 @@
     document.getElementById('calc-result').focus();
   });
   document.getElementById('c-clear').addEventListener('click', function () {
-    form.querySelectorAll('input').forEach(function (i) { i.value = ''; });
-    out.note.hidden = true;
+    inputs.forEach(function (i) { i.value = ''; i.closest('.field').classList.remove('is-example'); });
+    paintNote();
     window.bfaClear(form);
     form.dispatchEvent(new Event('bfa:reset'));
     render();
     document.getElementById('c-miles').focus();
   });
+  paintNote();
   render();
 })();

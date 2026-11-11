@@ -73,8 +73,8 @@
 <section class="hero">
   <div class="wrap">
     <h1>Free cost-per-mile calculator</h1>
-    <p class="lede">Add up one month of costs and divide by miles. It runs on your phone. Nothing is sent or saved.</p>
-    <p class="fine">The boxes start with <strong>example numbers</strong> so you can see how it works. Replace them with yours, or clear them.</p>
+    <p class="lede">Cost per mile is what it costs to move your truck one mile. Add one month of costs, and the calculator divides by your miles. It runs on your phone. Nothing is sent or saved.</p>
+    <p class="fine">Every box starts with a made-up <strong>example number</strong>, marked <span class="ex-tag">Example</span>. Type over each one with yours. The tag goes away once a box has your number.</p>
   </div>
 </section>
 <section class="section" style="padding-top:0">
@@ -88,7 +88,7 @@
       <h2>Miles</h2>
       <div class="calc-fields">
       <div class="field" id="c-miles-field">
-        <label for="c-miles">Miles driven this month</label>
+        <label for="c-miles">Miles driven this month <span class="ex-tag">Example</span></label>
         <span class="hint" id="c-miles-hint">All miles, loaded and empty. Empty miles are called deadhead.</span>
         <input id="c-miles" name="c-miles" inputmode="decimal" autocomplete="off" value="10000" data-number required data-min-exclusive="0" data-msg-missing="Information needed: miles driven this month. The calculator divides your costs by this number." aria-describedby="c-miles-hint" data-msg-invalid="Information needed: use numbers only, like 1250 or 1250.50." data-msg-range="Information needed: miles must be more than 0.">
         <p class="field-error" id="c-miles-error" hidden></p>
@@ -97,19 +97,19 @@
       <h2>Fixed costs (you pay these even when parked)</h2>
       <div class="calc-fields">
       <div class="field" id="c-payment-field">
-        <label for="c-payment">Truck and trailer payments</label>
+        <label for="c-payment">Truck and trailer payments <span class="ex-tag">Example</span></label>
         <span class="hint" id="c-payment-hint">Loan or lease payments this month.</span>
         <div class="money"><input id="c-payment" name="c-payment" inputmode="decimal" autocomplete="off" value="3800" data-number data-min="0" aria-describedby="c-payment-hint" data-msg-invalid="Information needed: use numbers only, like 1250 or 1250.50." data-msg-range="Information needed: this can't be negative. Enter 0 if you had none."></div>
         <p class="field-error" id="c-payment-error" hidden></p>
       </div>
       <div class="field" id="c-insurance-field">
-        <label for="c-insurance">Insurance</label>
+        <label for="c-insurance">Insurance <span class="ex-tag">Example</span></label>
         <span class="hint" id="c-insurance-hint">Liability, cargo, physical damage and bobtail.</span>
         <div class="money"><input id="c-insurance" name="c-insurance" inputmode="decimal" autocomplete="off" value="2600" data-number data-min="0" aria-describedby="c-insurance-hint" data-msg-invalid="Information needed: use numbers only, like 1250 or 1250.50." data-msg-range="Information needed: this can't be negative. Enter 0 if you had none."></div>
         <p class="field-error" id="c-insurance-error" hidden></p>
       </div>
       <div class="field" id="c-permits-field">
-        <label for="c-permits">Permits, plates, ELD and subscriptions</label>
+        <label for="c-permits">Permits, plates, ELD and subscriptions <span class="ex-tag">Example</span></label>
         <span class="hint" id="c-permits-hint">Monthly share of IRP plates, UCR, Form 2290, ELD and apps.</span>
         <div class="money"><input id="c-permits" name="c-permits" inputmode="decimal" autocomplete="off" value="1200" data-number data-min="0" aria-describedby="c-permits-hint" data-msg-invalid="Information needed: use numbers only, like 1250 or 1250.50." data-msg-range="Information needed: this can't be negative. Enter 0 if you had none."></div>
         <p class="field-error" id="c-permits-error" hidden></p>
@@ -117,32 +117,38 @@
       </div>
       <h2>Running costs (these grow with miles)</h2>
       <div class="calc-fields">
-      <div class="field" id="c-fuel-field">
-        <label for="c-fuel">Fuel</label>
-        <span class="hint" id="c-fuel-hint">Usually your biggest cost.</span>
-        <div class="money"><input id="c-fuel" name="c-fuel" inputmode="decimal" autocomplete="off" value="7400" data-number data-min="0" aria-describedby="c-fuel-hint" data-msg-invalid="Information needed: use numbers only, like 1250 or 1250.50." data-msg-range="Information needed: this can't be negative. Enter 0 if you had none."></div>
-        <p class="field-error" id="c-fuel-error" hidden></p>
+      <div class="field" id="c-fuel-price-field">
+        <label for="c-fuel-price">Fuel price <span class="ex-tag">Example</span></label>
+        <span class="hint" id="c-fuel-price-hint">Your average price per gallon of diesel. Fuel is usually your biggest cost.</span>
+        <div class="money"><input id="c-fuel-price" name="c-fuel-price" inputmode="decimal" autocomplete="off" value="3.90" data-number data-min="0" aria-describedby="c-fuel-price-hint" data-msg-invalid="Information needed: use numbers only, like 1250 or 1250.50." data-msg-range="Information needed: this can't be negative. Enter 0 if you had none."></div>
+        <p class="field-error" id="c-fuel-price-error" hidden></p>
+      </div>
+      <div class="field" id="c-mpg-field">
+        <label for="c-mpg">MPG <span class="ex-tag">Example</span></label>
+        <span class="hint" id="c-mpg-hint">Your truck's average miles per gallon. The calculator works out your fuel from your miles.</span>
+        <input id="c-mpg" name="c-mpg" inputmode="decimal" autocomplete="off" value="6.5" data-number required data-min-exclusive="0" data-msg-missing="Information needed: your MPG. The calculator uses it to work out your fuel." aria-describedby="c-mpg-hint" data-msg-invalid="Information needed: use numbers only, like 1250 or 1250.50." data-msg-range="Information needed: MPG must be more than 0.">
+        <p class="field-error" id="c-mpg-error" hidden></p>
       </div>
       <div class="field" id="c-maint-field">
-        <label for="c-maint">Maintenance and tires</label>
+        <label for="c-maint">Maintenance and tires <span class="ex-tag">Example</span></label>
         <span class="hint" id="c-maint-hint">Repairs, tires, oil, plus any maintenance savings you set aside.</span>
         <div class="money"><input id="c-maint" name="c-maint" inputmode="decimal" autocomplete="off" value="2000" data-number data-min="0" aria-describedby="c-maint-hint" data-msg-invalid="Information needed: use numbers only, like 1250 or 1250.50." data-msg-range="Information needed: this can't be negative. Enter 0 if you had none."></div>
         <p class="field-error" id="c-maint-error" hidden></p>
       </div>
       <div class="field" id="c-tolls-field">
-        <label for="c-tolls">Tolls, scales and parking</label>
+        <label for="c-tolls">Tolls, scales and parking <span class="ex-tag">Example</span></label>
         <span class="hint" id="c-tolls-hint"></span>
         <div class="money"><input id="c-tolls" name="c-tolls" inputmode="decimal" autocomplete="off" value="900" data-number data-min="0" aria-describedby="c-tolls-hint" data-msg-invalid="Information needed: use numbers only, like 1250 or 1250.50." data-msg-range="Information needed: this can't be negative. Enter 0 if you had none."></div>
         <p class="field-error" id="c-tolls-error" hidden></p>
       </div>
       <div class="field" id="c-pay-field">
-        <label for="c-pay">Driver pay (optional)</label>
-        <span class="hint" id="c-pay-hint">If you pay a driver, or want to count your own pay as a cost.</span>
+        <label for="c-pay">Driver pay (optional) <span class="ex-tag">Example</span></label>
+        <span class="hint" id="c-pay-hint">If you pay a driver, or want to count your own pay as a cost. Leave it at 0 and your pay is not included.</span>
         <div class="money"><input id="c-pay" name="c-pay" inputmode="decimal" autocomplete="off" value="0" data-number data-min="0" aria-describedby="c-pay-hint" data-msg-invalid="Information needed: use numbers only, like 1250 or 1250.50." data-msg-range="Information needed: this can't be negative. Enter 0 if you had none."></div>
         <p class="field-error" id="c-pay-error" hidden></p>
       </div>
       <div class="field" id="c-other-field">
-        <label for="c-other">Everything else</label>
+        <label for="c-other">Everything else <span class="ex-tag">Example</span></label>
         <span class="hint" id="c-other-hint">Phone, factoring fees, lumpers you were not paid back, and so on.</span>
         <div class="money"><input id="c-other" name="c-other" inputmode="decimal" autocomplete="off" value="800" data-number data-min="0" aria-describedby="c-other-hint" data-msg-invalid="Information needed: use numbers only, like 1250 or 1250.50." data-msg-range="Information needed: this can't be negative. Enter 0 if you had none."></div>
         <p class="field-error" id="c-other-error" hidden></p>
@@ -151,7 +157,7 @@
       <h2>Optional: your revenue</h2>
       <div class="calc-fields">
       <div class="field" id="c-revenue-field">
-        <label for="c-revenue">Revenue this month</label>
+        <label for="c-revenue">Revenue this month <span class="ex-tag">Example</span></label>
         <span class="hint" id="c-revenue-hint">Total paid to you before costs: linehaul, fuel surcharge and accessorials.</span>
         <div class="money"><input id="c-revenue" name="c-revenue" inputmode="decimal" autocomplete="off" value="23500" data-number data-min="0" aria-describedby="c-revenue-hint" data-msg-invalid="Information needed: use numbers only, like 1250 or 1250.50." data-msg-range="Information needed: this can't be negative. Enter 0 if you had none."></div>
         <p class="field-error" id="c-revenue-error" hidden></p>
@@ -160,13 +166,13 @@
       <h2>Optional: check a load</h2>
       <div class="calc-fields">
       <div class="field" id="c-load-pay-field">
-        <label for="c-load-pay">What the load pays</label>
+        <label for="c-load-pay">What the load pays <span class="ex-tag">Example</span></label>
         <span class="hint" id="c-load-pay-hint">The full rate on the rate confirmation.</span>
         <div class="money"><input id="c-load-pay" name="c-load-pay" inputmode="decimal" autocomplete="off" value="1600" data-number data-min="0" aria-describedby="c-load-pay-hint" data-msg-invalid="Information needed: use numbers only, like 1250 or 1250.50." data-msg-range="Information needed: this can't be negative. Enter 0 if you had none."></div>
         <p class="field-error" id="c-load-pay-error" hidden></p>
       </div>
       <div class="field" id="c-load-miles-field">
-        <label for="c-load-miles">Total miles for the load</label>
+        <label for="c-load-miles">Total miles for the load <span class="ex-tag">Example</span></label>
         <span class="hint" id="c-load-miles-hint">Loaded miles plus the deadhead to get to it.</span>
         <input id="c-load-miles" name="c-load-miles" inputmode="decimal" autocomplete="off" value="800" data-number data-min="0" aria-describedby="c-load-miles-hint" data-msg-invalid="Information needed: use numbers only, like 1250 or 1250.50." data-msg-range="Information needed: this can't be negative. Enter 0 if you had none." data-min-exclusive="0">
         <p class="field-error" id="c-load-miles-error" hidden></p>
@@ -187,10 +193,15 @@
         <dt>Total costs</dt><dd id="r-total">—</dd>
         <dt>Fixed costs</dt><dd id="r-fixed">—</dd>
         <dt>Running costs</dt><dd id="r-var">—</dd>
+        <dt>Fuel</dt><dd id="r-fuel">—</dd>
         <dt class="r-rev">Revenue per mile</dt><dd class="r-rev" id="r-rpm">—</dd>
         <dt class="r-rev">Profit per mile</dt><dd class="r-rev" id="r-ppm">—</dd>
       </dl>
       <p id="r-load"></p>
+      <ul class="calc-notes">
+        <li id="r-pay-note">Your own pay is not in this number. It comes on top, unless you add it under Driver pay.</li>
+        <li>When you check a load, count every mile you drive for it, empty miles too.</li>
+      </ul>
       <p>Want this every month from your real books?</p>
       <a class="btn btn-primary btn-block" href="/contact/?for=trucking" data-track="book_click">Book a Books Checkup</a>
     </aside>
